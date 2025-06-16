@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export default function FileUpload() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -9,13 +9,13 @@ export default function FileUpload() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.type === "text/csv" || file.name.endsWith(".csv")) {
+      if (file.type === 'text/csv' || file.name.endsWith('.csv')) {
         setSelectedFile(file);
         setError(null);
         setSuccessMessage(null);
       } else {
         setSelectedFile(null);
-        setError("Please upload a valid CSV file.");
+        setError('Please upload a valid CSV file.');
         setSuccessMessage(null);
       }
     }
@@ -23,7 +23,7 @@ export default function FileUpload() {
 
   const handleUpload = async () => {
     if (!selectedFile) {
-      setError("No file selected.");
+      setError('No file selected.');
       return;
     }
 
@@ -32,24 +32,26 @@ export default function FileUpload() {
     setSuccessMessage(null);
 
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append('file', selectedFile);
 
     try {
-      const response = await fetch("http://localhost:3000/airports/upload", {
-        method: "POST",
+      const response = await fetch('http://localhost:3000/airports/upload', {
+        method: 'POST',
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error(`An error occurred while uploading the file: ${response.status}`);
+        throw new Error(
+          `An error occurred while uploading the file: ${response.status}`,
+        );
       }
 
       setSuccessMessage(`File uploaded successfully`);
-  }  catch (error: unknown) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message);
       } else {
-        setError("An unknown error occurred while uploading the file.");
+        setError('An unknown error occurred while uploading the file.');
       }
     } finally {
       setLoading(false);
@@ -80,7 +82,7 @@ export default function FileUpload() {
           disabled={loading}
           className="bg-stone-300 text-slate-800 font-semibold py-2 px-4 rounded-lg hover:bg-stone-400 transition-colors disabled:opacity-50"
         >
-          {loading ? "Uploading..." : "Upload CSV"}
+          {loading ? 'Uploading...' : 'Upload CSV'}
         </button>
       </div>
 

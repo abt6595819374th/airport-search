@@ -4,7 +4,6 @@ import { AirportService } from './airport.service';
 import { Airport } from './airport.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-// TODO rename module
 @Module({
   controllers: [AirportController],
   providers: [AirportService],

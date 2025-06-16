@@ -3,8 +3,8 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import type { AirportDto } from '../types/airport.ts';
 
 export default function Home() {
-  const [query, setQuery] = useState<string>("");
-  const [debouncedQuery, setDebouncedQuery] = useState<string>("");
+  const [query, setQuery] = useState<string>('');
+  const [debouncedQuery, setDebouncedQuery] = useState<string>('');
   const [results, setResults] = useState<AirportDto[]>([]);
   const [selectedResult, setSelectedResult] = useState<AirportDto | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -17,11 +17,13 @@ export default function Home() {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/airports?search=${encodeURIComponent(searchTerm)}`);
+      const response = await fetch(
+        `http://localhost:3000/airports?search=${encodeURIComponent(searchTerm)}`,
+      );
       const data: AirportDto[] = await response.json();
       setResults(data || []);
     } catch (error) {
-      console.error("Error fetching search results:", error);
+      console.error('Error fetching search results:', error);
     } finally {
       setLoading(false);
     }
@@ -46,7 +48,7 @@ export default function Home() {
 
   const handleSelect = (item: AirportDto) => {
     setSelectedResult(item);
-    setQuery("");
+    setQuery('');
     setResults([]);
   };
 
@@ -86,10 +88,9 @@ export default function Home() {
                   className="px-4 py-2 hover:bg-stone-200 cursor-pointer text-slate-800"
                   onClick={() => handleSelect(result)}
                 >
-                  {result.name}{" "}
-                  {result.iata}{" "}
-                  ({result.unlocode}){" "}
-                  {result.country}{", "}
+                  {result.name} {result.iata} ({result.unlocode}){' '}
+                  {result.country}
+                  {', '}
                   {result.city}
                 </li>
               ))}
@@ -103,10 +104,9 @@ export default function Home() {
         {selectedResult && (
           <div className="mt-4 p-4 border border-stone-300 bg-stone-200 text-slate-900">
             <p>
-              {selectedResult.name}{" "}
-              {selectedResult.iata}{" "}
-              ({selectedResult.unlocode}){" "}
-              {selectedResult.country}{", "}
+              {selectedResult.name} {selectedResult.iata} (
+              {selectedResult.unlocode}) {selectedResult.country}
+              {', '}
               {selectedResult.city}
             </p>
           </div>
