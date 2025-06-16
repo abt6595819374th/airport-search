@@ -1,0 +1,12 @@
+name,iata,unlocode,country,city
+LaGuardia Airport,LGA,USNYC,United States,New York
+Newark Liberty International Airport,EWR,USNYC,United States,Newark/New York
+London Gatwick Airport,LGW,GBLON,United Kingdom,London
+London Stansted Airport,STN,GBLON,United Kingdom,London
+Kansai International Airport,KIX,JPOSA,Japan,Osaka
+Haneda Airport,HND,JPTYO,Japan,Tokyo
+Narita International Airport,NRT,JPTYO,Japan,Tokyo
+Beijing Daxing International Airport,PKX,CNPEK,China,Beijing
+Domodedovo International Airport,DME,RUMOW,Russia,Moscow
+Vnukovo International Airport,VKO,RUMOW,Russia,Moscow
+Amsterdam Airport Schiphol,AMS,NLAMS,Netherlands,Amsterdam
