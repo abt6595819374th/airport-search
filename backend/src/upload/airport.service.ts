@@ -25,7 +25,7 @@ export class AirportService {
 
     const dataLines = lines.slice(1);
 
-    if (dataLines.length > 1) {
+    if (dataLines.length > 0) {
       await this.deleteAirports();
     }
 
