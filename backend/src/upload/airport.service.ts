@@ -48,7 +48,7 @@ export class AirportService {
       return airport;
     });
 
-    await Promise.all(airports.map((airport) => this.repository.save(airport)));
+    await this.repository.save(airports);
   }
 
   async findAirport(search: string) {

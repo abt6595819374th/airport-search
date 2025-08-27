@@ -99,13 +99,16 @@ describe('AirportService', () => {
       expect(mockRepository.clear).toHaveBeenCalledTimes(1);
       expect(mockRepository.clear).toHaveBeenCalled();
       expect(mockRepository.save).toHaveBeenCalledTimes(1);
-      expect(mockRepository.save).toHaveBeenCalledWith({
-        name: 'Amsterdam Airport Schiphol',
-        iata: 'AMS',
-        unlocode: 'NLAMS',
-        country: 'Netherlands',
-        city: 'Amsterdam',
-      });
+      expect(mockRepository.save).toHaveBeenCalledWith([
+        {
+          id: undefined,
+          name: 'Amsterdam Airport Schiphol',
+          iata: 'AMS',
+          unlocode: 'NLAMS',
+          country: 'Netherlands',
+          city: 'Amsterdam',
+        },
+      ]);
     });
 
     it('should trim whitespace from CSV fields', async () => {
@@ -117,16 +120,19 @@ describe('AirportService', () => {
 
       await service.uploadFile(file);
 
-      expect(mockRepository.save).toHaveBeenCalledWith({
-        name: 'Amsterdam Airport Schiphol',
-        iata: 'AMS',
-        unlocode: 'NLAMS',
-        country: 'Netherlands',
-        city: 'Amsterdam',
-      });
+      expect(mockRepository.save).toHaveBeenCalledWith([
+        {
+          id: undefined,
+          name: 'Amsterdam Airport Schiphol',
+          iata: 'AMS',
+          unlocode: 'NLAMS',
+          country: 'Netherlands',
+          city: 'Amsterdam',
+        },
+      ]);
     });
 
-    it('should handle Promise.all rejection when saving fails', async () => {
+    it('should handle batch save rejection when saving fails', async () => {
       const csvContent =
         'name,iata,unlocode,country,city\nSchiphol Airport,AMS,NLAMS,Netherlands,Amsterdam';
       const file = createMockFile(csvContent);
